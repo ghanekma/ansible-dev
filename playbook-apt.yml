@@ -1,0 +1,12 @@
+---
+- name: Playbook - Install figlet  # just meta data
+  hosts: planetexpress:!farnsworth  # a reference to the inventory ~/ans/inv/dev/hosts (or whereever your inv is)
+  connection: ssh     # default connection plugin is ssh.py
+  gather_facts: yes   # default is yes - this is the module "setup" you learned about in the last lab
+
+  tasks:   # a list of what you want done to the "hosts"
+  - name: using apt to install figlet  # just meta data
+    apt:    # this is a reference to a "plugin module" called apt.py
+        name: figlet   # this is the name of the software to install from the apt-repo
+        state: present  # this is the state we want our software in. other options include "absent"
+    become: yes   # elevate to admin (sudo) to install
